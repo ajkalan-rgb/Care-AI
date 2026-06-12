@@ -16,7 +16,7 @@ fi
 mkdir -p "$ASSET_DIR"
 
 if [ "$MODE" = "rollback" ]; then
-  docker exec -u root "$KPI_CONTAINER" python - <<'PY'
+  docker exec -i -u root "$KPI_CONTAINER" python - <<'PY'
 from pathlib import Path
 restored = []
 for backup in Path('/srv/src/kpi').rglob('*.care-ai-bak'):
@@ -177,13 +177,13 @@ for container in "$KPI_CONTAINER" "$NGINX_CONTAINER"; do
   docker cp "$ASSET_DIR/." "${container}:${REMOTE_SKIN_DIR}/"
 done
 
-docker exec -u root "$KPI_CONTAINER" python - <<'PY'
+docker exec -i -u root "$KPI_CONTAINER" python - <<'PY'
 from pathlib import Path
 
 patch = '''
 <!-- CARE-AI RUNTIME SKIN -->
-<link rel="stylesheet" href="/static/care-ai-skin/care-ai-web.css?v=2">
-<script defer src="/static/care-ai-skin/care-ai-web.js?v=2"></script>
+<link rel="stylesheet" href="/static/care-ai-skin/care-ai-web.css?v=3">
+<script defer src="/static/care-ai-skin/care-ai-web.js?v=3"></script>
 <!-- /CARE-AI RUNTIME SKIN -->
 '''
 
