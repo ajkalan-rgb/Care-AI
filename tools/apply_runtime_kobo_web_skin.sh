@@ -146,6 +146,7 @@ cat > "$ASSET_DIR/care-ai-web.js" <<'JS'
   }
 
   function replaceVisibleKoboText() {
+    if (!document.body) return;
     var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
     var node;
     while ((node = walker.nextNode())) {
@@ -179,51 +180,49 @@ done
 docker exec -u root "$KPI_CONTAINER" python - <<'PY'
 from pathlib import Path
 
-roots = [Path('/srv/src/kpi')]
-needles = ['Logo overrides', 'KoboToolbox']
 patch = '''
 <!-- CARE-AI RUNTIME SKIN -->
-<link rel="stylesheet" href="/static/care-ai-skin/care-ai-web.css?v=1">
-<script defer src="/static/care-ai-skin/care-ai-web.js?v=1"></script>
+<link rel="stylesheet" href="/static/care-ai-skin/care-ai-web.css?v=2">
+<script defer src="/static/care-ai-skin/care-ai-web.js?v=2"></script>
 <!-- /CARE-AI RUNTIME SKIN -->
 '''
 
-candidates = []
-for root in roots:
-    if not root.exists():
-        continue
-    for path in root.rglob('*'):
-        if not path.is_file():
-            continue
-        if path.suffix not in {'.html', '.htm', '.txt'}:
-            continue
-        try:
-            if path.stat().st_size > 750000:
-                continue
-            text = path.read_text(errors='ignore')
-        except Exception:
-            continue
-        if all(n in text for n in needles) and '</head>' in text:
-            candidates.append(path)
+def backup_once(path: Path, text: str):
+    backup = Path(str(path) + '.care-ai-bak')
+    if not backup.exists():
+        backup.write_text(text)
+    return backup
 
-if not candidates:
-    raise SystemExit('ERROR: Could not find Kobo HTML shell template to patch')
+def patch_index(path: Path):
+    if not path.exists():
+        raise SystemExit(f'ERROR: Expected template missing: {path}')
+    text = path.read_text(errors='ignore')
+    backup = backup_once(path, text)
+    if 'CARE-AI RUNTIME SKIN' not in text:
+        if '</head>' not in text:
+            raise SystemExit(f'ERROR: No </head> in {path}')
+        text = text.replace('</head>', patch + '\n  </head>')
+    text = text.replace('<title>KoboToolbox </title>', '<title>Child-Care Thrive | CARE-AI</title>')
+    text = text.replace('<title>KoboToolbox {% block title %}{% endblock %}</title>', '<title>Child-Care Thrive | CARE-AI {% block title %}{% endblock %}</title>')
+    text = text.replace('KoboToolbox is a free toolkit for collecting and managing data in challenging environments and is the most widely-used tool in humanitarian emergencies', 'Child-Care Thrive is a CARE-AI powered child health screening and community data collection platform.')
+    path.write_text(text)
+    print('Patched index template:', path)
+    print('Backup:', backup)
 
-target = candidates[0]
-text = target.read_text(errors='ignore')
-backup = Path(str(target) + '.care-ai-bak')
-if not backup.exists():
-    backup.write_text(text)
 
-if 'CARE-AI RUNTIME SKIN' not in text:
-    text = text.replace('</head>', patch + '\n  </head>')
+def patch_base_simple(path: Path):
+    if not path.exists():
+        print('Base simple template not found, skipped:', path)
+        return
+    text = path.read_text(errors='ignore')
+    backup = backup_once(path, text)
+    text = text.replace('<title>KoboToolbox {% block title %}{% endblock %}</title>', '<title>Child-Care Thrive | CARE-AI {% block title %}{% endblock %}</title>')
+    path.write_text(text)
+    print('Patched base_simple title:', path)
+    print('Backup:', backup)
 
-text = text.replace('<title>KoboToolbox ', '<title>Child-Care Thrive | CARE-AI ')
-text = text.replace('KoboToolbox is a free toolkit for collecting and managing data in challenging environments and is the most widely-used tool in humanitarian emergencies', 'Child-Care Thrive is a CARE-AI powered child health screening and community data collection platform.')
-
-target.write_text(text)
-print('Patched template:', target)
-print('Backup:', backup)
+patch_index(Path('/srv/src/kpi/kpi/templates/index.html'))
+patch_base_simple(Path('/srv/src/kpi/kpi/templates/base_simple.html'))
 PY
 
 docker restart "$KPI_CONTAINER" "$NGINX_CONTAINER" >/dev/null
