@@ -38,12 +38,14 @@ for host in ['kf.kobo.local', 'kc.kobo.local', 'ee.kobo.local']:
 PY
 
 printf '\n--- Environment values likely relevant to Enketo / domains ---\n'
-for file in upstream/kobo-env/envfiles/*.txt upstream/kobo-env/envfiles/*.env upstream/kobo-env/envfiles/* 2>/dev/null; do
-  if [ -f "$file" ]; then
+if [ -d upstream/kobo-env/envfiles ]; then
+  find upstream/kobo-env/envfiles -maxdepth 1 -type f -print | sort | while read -r file; do
     printf '\n# %s\n' "$file"
     grep -Ei 'enketo|kobo|domain|host|url|protocol' "$file" || true
-  fi
-done
+  done
+else
+  printf 'No upstream/kobo-env/envfiles directory found.\n'
+fi
 
 printf '\n--- Recent KPI logs: enketo/link/error hints ---\n'
 docker logs --since=30m kobofe-kpi-1 2>&1 | grep -Ei 'enketo|link|deploy|deployment|error|exception|failed|traceback' | tail -120 || true
