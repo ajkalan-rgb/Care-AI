@@ -14,3 +14,8 @@ upstream/kobo-env/
 Thumbs.db
 .vscode/
 .idea/
+
+# Kobo runtime / cloned upstream folders - never commit
+upstream/kobo-install/
+upstream/kobo-docker/
+upstream/kobo-env/

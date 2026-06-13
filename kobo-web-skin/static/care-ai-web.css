@@ -1,0 +1,86 @@
+:root {
+  --care-ai-blue: #006FE6;
+  --care-ai-navy: #001F5B;
+  --care-ai-red: #E60000;
+  --care-ai-soft-blue: #EAF4FF;
+}
+
+#care-ai-brand-strip {
+  position: sticky;
+  top: 0;
+  z-index: 99999;
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 8px 18px;
+  background: linear-gradient(90deg, var(--care-ai-navy), var(--care-ai-blue));
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(0, 31, 91, 0.22);
+  font-family: Inter, Arial, sans-serif;
+}
+
+#care-ai-brand-strip .care-ai-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#care-ai-brand-strip img.care-ai-logo {
+  height: 40px;
+  width: auto;
+  display: block;
+  background: rgba(255,255,255,0.96);
+  border-radius: 10px;
+  padding: 4px 8px;
+}
+
+#care-ai-brand-strip .care-ai-title {
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  font-size: 15px;
+  line-height: 1.15;
+}
+
+#care-ai-brand-strip .care-ai-subtitle {
+  font-size: 11px;
+  opacity: 0.9;
+  line-height: 1.2;
+}
+
+#care-ai-brand-strip .care-ai-powered {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  white-space: nowrap;
+  opacity: 0.95;
+}
+
+#care-ai-brand-strip .care-ai-powered img {
+  height: 34px;
+  width: auto;
+  background: #fff;
+  border-radius: 999px;
+  padding: 3px;
+}
+
+img[src*="kobologo"], img[alt*="Kobo"], img[alt*="KoBo"], .kobo-logo {
+  content: url('/static/care-ai-skin/care-ai-header-logo.png') !important;
+  object-fit: contain !important;
+}
+
+button, .k-button, .btn, [role="button"] {
+  border-radius: 10px;
+}
+
+@media (max-width: 760px) {
+  #care-ai-brand-strip {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  #care-ai-brand-strip .care-ai-powered {
+    white-space: normal;
+  }
+}

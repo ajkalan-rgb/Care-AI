@@ -1,0 +1,324 @@
+/* CARE-AI restored login skin */
+
+#care-ai-brand-strip,
+body::before,
+body::after,
+form::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Login page only */
+body:has(input[type="password"]) {
+  width: 100vw !important;
+  min-height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background-color: #ffffff !important;
+  background-image: url("/static/care-ai-skin/login-bg.jpg?v=restore-paediatric") !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-position: 36px center !important;
+}
+
+.care-ai-old-login-shell {
+  display: none !important;
+}
+
+#care-ai-login-panel {
+  position: fixed !important;
+  top: 54px !important;
+  right: 78px !important;
+  z-index: 2147483647 !important;
+  width: 330px !important;
+  padding: 26px 28px !important;
+  background: rgba(255,255,255,0.96) !important;
+  border: 1px solid rgba(0,31,91,0.28) !important;
+  border-radius: 22px !important;
+  box-shadow: 0 24px 65px rgba(0,31,91,0.14) !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+#care-ai-login-panel .care-ai-panel-title {
+  margin: 0 0 22px 0 !important;
+  color: #001F5B !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+}
+
+#care-ai-login-panel img,
+#care-ai-login-panel svg,
+#care-ai-login-panel .kobo-logo {
+  display: none !important;
+}
+
+#care-ai-login-panel form {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  width: 100% !important;
+}
+
+#care-ai-login-panel label {
+  display: block !important;
+  margin: 0 0 7px 0 !important;
+  color: #001F5B !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+}
+
+#care-ai-login-panel input {
+  width: 100% !important;
+  height: 38px !important;
+  margin: 0 0 16px 0 !important;
+  border-radius: 10px !important;
+  border: 1px solid #B8C7DA !important;
+  background: #ffffff !important;
+  color: #001F5B !important;
+  font-size: 13px !important;
+}
+
+#care-ai-login-panel button,
+#care-ai-login-panel input[type="submit"],
+#care-ai-login-panel .btn,
+#care-ai-login-panel .login-button {
+  width: 100% !important;
+  height: 40px !important;
+  border-radius: 10px !important;
+  border: 1px solid #006FE6 !important;
+  background: #006FE6 !important;
+  color: #ffffff !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  box-shadow: 0 8px 18px rgba(0,111,230,0.20) !important;
+}
+
+#care-ai-login-panel a {
+  color: #006FE6 !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+}
+
+select {
+  position: fixed !important;
+  top: 18px !important;
+  right: 78px !important;
+  z-index: 2147483647 !important;
+  width: 150px !important;
+  height: 30px !important;
+  border-radius: 10px !important;
+  border: 1px solid #D1D5DB !important;
+  background: #ffffff !important;
+  color: #001F5B !important;
+}
+
+[class*="photo"],
+[class*="credit"] {
+  display: none !important;
+}
+
+
+
+
+/* === CARE-AI PORTAL LOGOS SAME WORKING METHOD === */
+
+#care-ai-portal-brand-logo {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 270px !important;
+  height: 58px !important;
+  z-index: 2147483647 !important;
+  background: #ffffff !important;
+  border-right: 1px solid #e5e7eb !important;
+  border-bottom: 1px solid #e5e7eb !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+#care-ai-portal-brand-logo img {
+  max-width: 236px !important;
+  max-height: 46px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+}
+
+#care-ai-portal-hspn-sidebar-logo {
+  position: fixed !important;
+  left: 66px !important;
+  bottom: 18px !important;
+  width: 200px !important;
+  height: 82px !important;
+  z-index: 2147483646 !important;
+  background: #ffffff !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 18px rgba(0,31,91,0.08) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+#care-ai-portal-hspn-sidebar-logo img {
+  max-width: 184px !important;
+  max-height: 70px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+}
+
+/* === /CARE-AI PORTAL LOGOS SAME WORKING METHOD === */
+
+
+
+
+
+
+/* === CARE-AI PORTAL USER SNIPS === */
+
+/* Top Child-Care logo: same visual footprint as original KoboToolbox logo */
+#care-ai-portal-brand-logo {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 282px !important;
+  height: 58px !important;
+  z-index: 2147483647 !important;
+  background: #ffffff !important;
+  border-right: 1px solid #dfe5ef !important;
+  border-bottom: 1px solid #dfe5ef !important;
+  box-shadow: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 22px !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+#care-ai-portal-brand-logo img {
+  content: url("/static/care-ai-skin/portal-childcare-logo-user.jpg?v=user-snips-1") !important;
+  display: block !important;
+  width: 220px !important;
+  max-width: 220px !important;
+  height: auto !important;
+  max-height: 40px !important;
+  object-fit: contain !important;
+  opacity: 0.92 !important;
+  filter: saturate(0.90) contrast(0.94) brightness(1.02) !important;
+}
+
+/* Bottom HSPN ribbon: fill the white sidebar panel, not the icon rail */
+#care-ai-portal-hspn-sidebar-logo {
+  position: fixed !important;
+  left: 70px !important;
+  bottom: 26px !important;
+  width: 206px !important;
+  height: 126px !important;
+  z-index: 2147483646 !important;
+  background: #ffffff !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+#care-ai-portal-hspn-sidebar-logo img {
+  content: url("/static/care-ai-skin/portal-hspn-ribbon-user.png?v=user-snips-1") !important;
+  display: block !important;
+  width: 206px !important;
+  height: 126px !important;
+  max-width: 206px !important;
+  max-height: 126px !important;
+  object-fit: contain !important;
+}
+
+/* === /CARE-AI PORTAL USER SNIPS === */
+
+/* === CARE-AI STOP EDGING === */
+
+/* Top logo: keep it inside the original KoboToolbox footprint */
+#care-ai-portal-brand-logo {
+  left: 0 !important;
+  top: 0 !important;
+  width: 238px !important;
+  height: 58px !important;
+  padding: 0 12px !important;
+  background: #ffffff !important;
+  overflow: hidden !important;
+  border-right: 1px solid #dfe5ef !important;
+  border-bottom: 1px solid #dfe5ef !important;
+}
+
+#care-ai-portal-brand-logo img {
+  width: 206px !important;
+  max-width: 206px !important;
+  max-height: 38px !important;
+  height: auto !important;
+  object-fit: contain !important;
+  opacity: 0.90 !important;
+  filter: saturate(0.88) contrast(0.92) brightness(1.03) !important;
+}
+
+/* Ribbon: stay fully inside the white sidebar panel */
+#care-ai-portal-hspn-sidebar-logo {
+  left: 76px !important;
+  bottom: 28px !important;
+  width: 190px !important;
+  height: 118px !important;
+  background: #ffffff !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+#care-ai-portal-hspn-sidebar-logo img {
+  width: 188px !important;
+  max-width: 188px !important;
+  height: 108px !important;
+  max-height: 108px !important;
+  object-fit: contain !important;
+}
+
+/* === /CARE-AI STOP EDGING === */
+
+/* === CARE-AI HIDE HELP GITHUB === */
+
+/* Hide Kobo help/github bottom-left buttons after JS tags them */
+.care-ai-hide-help-github {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Extra CSS safety net for obvious href/title/aria cases */
+body:not(:has(input[type="password"])) a[href*="github"],
+body:not(:has(input[type="password"])) a[href*="support"],
+body:not(:has(input[type="password"])) a[href*="help"],
+body:not(:has(input[type="password"])) a[title*="GitHub"],
+body:not(:has(input[type="password"])) a[title*="Help"],
+body:not(:has(input[type="password"])) button[title*="Help"],
+body:not(:has(input[type="password"])) a[aria-label*="GitHub"],
+body:not(:has(input[type="password"])) a[aria-label*="Help"],
+body:not(:has(input[type="password"])) button[aria-label*="Help"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* === /CARE-AI HIDE HELP GITHUB === */
