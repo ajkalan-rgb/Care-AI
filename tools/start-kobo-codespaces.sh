@@ -98,6 +98,10 @@ INNER
 done
 
 echo ""
+echo "=== Fix Codespaces forwarded browser host ==="
+/workspaces/Care-AI/tools/fix-kobo-forwarded-host.sh
+
+echo ""
 echo "=== Reload nginx ==="
 docker exec -u root kobofe-nginx-1 nginx -t
 docker exec -u root kobofe-nginx-1 nginx -s reload || docker restart kobofe-nginx-1
